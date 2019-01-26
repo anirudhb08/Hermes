@@ -17,4 +17,4 @@ def get_equity_list():
     file.close()
     return equity_list
 
-f = get_equity_list()
+#f = get_equity_list()
