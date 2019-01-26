@@ -3,7 +3,7 @@
 # coding: utf-8
 import requests
 import pandas as pd
-import datetime
+#import datetime
 import time
 
 def getData(ticker, metric, no_of_days):
@@ -34,7 +34,7 @@ def getData(ticker, metric, no_of_days):
     return dataFrame
 
 
-d = getData('MARUTI.NS', 'close', 365)
+#d = getData('MARUTI.NS', 'close', 365)
 
 
 
