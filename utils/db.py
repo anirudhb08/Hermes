@@ -114,6 +114,7 @@ def get_engine():
     db_config = config()
     engine_str = 'postgresql+psycopg2://' + db_config['user'] + ':' + db_config['password'] + '@' + db_config['host'] + '/' + db_config['database']
     engine = create_engine(engine_str)
+    return engine
 
 def read_from_tickerdata(ticker, metric, tbegin, tend, tstep):
     # Both `tbegin` and `tend` should be in UNIX seconds
@@ -184,17 +185,17 @@ def test_setup():
     write_to_db('tickerdata', ticker_df)
     write_to_db('activitylog', log_df)
 
-    read_ticker_df = read_from_tickerdata('test_setup', 'sma', date_today, date_tomorrow, timedelta(days=1).total_seconds())
-    read_log_df = read_from_activitylog('test_setup', 'activity')
-
-    print()
-    print(ticker_df)
-    print(read_ticker_df)
-
-    print()
-    print(log_df)
-    print(read_log_df)
-    print()
+#    read_ticker_df = read_from_tickerdata('test_setup', 'sma', date_today, date_tomorrow, timedelta(days=1).total_seconds())
+#    read_log_df = read_from_activitylog('test_setup', 'activity')
+#
+#    print()
+#    print(ticker_df)
+#    print(read_ticker_df)
+#
+#    print()
+#    print(log_df)
+#    print(read_log_df)
+#    print()
 
 if __name__ == '__main__':
     setup()
