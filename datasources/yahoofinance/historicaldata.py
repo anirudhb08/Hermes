@@ -8,6 +8,7 @@ import time
 
 def getData(ticker, metric, no_of_days):
     
+    ticker = ticker + str('.NS')
     current_time = int(round(time.time()))
     start_time = current_time - (no_of_days)*24*60*60
     
