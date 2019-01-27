@@ -3,11 +3,12 @@
 # coding: utf-8
 import requests
 import pandas as pd
-import datetime
+#import datetime
 import time
 
 def getData(ticker, metric, no_of_days):
     
+    ticker = ticker + str('.NS')
     current_time = int(round(time.time()))
     start_time = current_time - (no_of_days)*24*60*60
     
@@ -34,7 +35,7 @@ def getData(ticker, metric, no_of_days):
     return dataFrame
 
 
-d = getData('MARUTI.NS', 'close', 365)
+#d = getData('MARUTI.NS', 'close', 365)
 
 
 
