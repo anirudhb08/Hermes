@@ -110,11 +110,14 @@ def write_to_db(tablename, pd_frame):
     # Note: this can be optimized using this -- https://gist.github.com/ellisvalentiner/63b083180afe54f17f16843dd51f4394
     pd_frame.to_sql(tablename, engine_str, if_exists='append', index=False)
 
-def read_from_tickerdata(ticker, metric, tbegin, tend, tstep):
-    # Both `tbegin` and `tend` should be in UNIX seconds
+def get_engine():
     db_config = config()
     engine_str = 'postgresql+psycopg2://' + db_config['user'] + ':' + db_config['password'] + '@' + db_config['host'] + '/' + db_config['database']
     engine = create_engine(engine_str)
+
+def read_from_tickerdata(ticker, metric, tbegin, tend, tstep):
+    # Both `tbegin` and `tend` should be in UNIX seconds
+    engine = get_engine()
 
     select_query = \
     '''
@@ -126,9 +129,7 @@ def read_from_tickerdata(ticker, metric, tbegin, tend, tstep):
     return df
 
 def read_from_activitylog(ticker, activity):
-    db_config = config()
-    engine_str = 'postgresql+psycopg2://' + db_config['user'] + ':' + db_config['password'] + '@' + db_config['host'] + '/' + db_config['database']
-    engine = create_engine(engine_str)
+    engine = get_engine()
 
     select_query = \
     '''
@@ -140,9 +141,7 @@ def read_from_activitylog(ticker, activity):
     return df
 
 def read_from_db(query):
-    db_config = config()
-    engine_str = 'postgresql+psycopg2://' + db_config['user'] + ':' + db_config['password'] + '@' + db_config['host'] + '/' + db_config['database']
-    engine = create_engine(engine_str)
+    engine = get_engine()
 
     return pd.read_sql_query(query, engine)
 
