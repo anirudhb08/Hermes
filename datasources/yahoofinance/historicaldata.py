@@ -32,10 +32,13 @@ def getData(ticker, metric, no_of_days):
     d = {'timestamp': timestamps, 'value': values}
     dataFrame = pd.DataFrame(data=d)
     
+    #convert 9:15 to 3:30
+    dataFrame['timestamp'] = dataFrame['timestamp'] + 375*60
+    
     return dataFrame
 
 
-#d = getData('MARUTI.NS', 'close', 365)
+#d = getData('MARUTI', 'close', 365)
 
 
 
